@@ -1,7 +1,10 @@
+import { ViewData } from "@/components/button";
 
 
 export default function Home() {
   return (
-    <h1 className="title text-2xl">Home page</h1>
+    <div className="w-full h-screen flex justify-center items-center">
+      <ViewData />
+    </div>
   );
 }

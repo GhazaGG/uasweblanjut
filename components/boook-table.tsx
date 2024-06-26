@@ -1,6 +1,5 @@
 import React from 'react'
 import { getBooks } from '@/lib/data';
-import { formatDate } from '@/lib/utils';
 import { EditButton, DeleteButton } from '@/components/button';
 
 const BookTable = async () => {
@@ -32,12 +31,12 @@ const BookTable = async () => {
                     <td className='py-3 px-6'>{book.judul_buku}</td>
                     <td className='py-3 px-6'>{book.pengaran}</td>
                     <td className='py-3 px-6'>{book.sekilas_isi}</td>
-                    <td className='py-3 px-6'>{formatDate(book.tanggal_masuk.toString())}</td>
+                    <td className='py-3 px-6'>{book.tanggal_masuk}</td>
                     <td className='py-3 px-6'>{book.stok}</td>
                     <td className='py-3 px-6'>{book.foto}</td>
                     <td className='flex justify-center gap-1 py-3'>
-                        <EditButton />
-                        <DeleteButton />
+                        <EditButton id={book.id}/>
+                        <DeleteButton id={book.id} />
                     </td>
                 </tr>
             ))}

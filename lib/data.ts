@@ -8,3 +8,14 @@ export const getBooks = async () =>{
         throw new Error("gagal untuk fetching data buku");
     }
 }
+
+export const getBooksById = async (id: string) =>{
+    try {
+        const book = await prisma.book.findUnique({
+            where: {id}
+        })
+        return book;
+    } catch (error) {
+        throw new Error("gagal untuk fetching data buku");
+    }
+}

@@ -14,14 +14,14 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Book {
+model Book {  
   id String @id @default(cuid())
   kode_buku String @unique
   isbn String @unique
   judul_buku String
   pengaran String
   sekilas_isi String
-  tanggal_masuk DateTime
-  stok Int
+  tanggal_masuk String
+  stok String
   foto String?
 }

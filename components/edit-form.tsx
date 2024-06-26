@@ -1,11 +1,13 @@
 "use client"
 import React from 'react'
 
-import { saveBook } from '@/lib/action';
+import { UpdateBook, saveBook } from '@/lib/action';
 import { useFormState } from 'react-dom';
+import type { Book } from '@prisma/client';
 
-const CreateForm = () => {
-    const[state, formAction] = useFormState(saveBook, null);
+const UpdateForm = ({book}: {book:Book}) => {
+    const updateBookWithId = UpdateBook.bind(null, book.id);
+    const[state, formAction] = useFormState(updateBookWithId, null);
   return (
     <div>
         <form action={formAction}>
@@ -22,6 +24,7 @@ const CreateForm = () => {
                 id='kode_buku'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='Kode Buku...'
+                defaultValue={book.kode_buku}
                 />
                 <div id='kode-eror' aria-live='polite' aria-atomic='true'>
                     <p className='mt-2 text-sm text-red-500'>
@@ -42,6 +45,7 @@ const CreateForm = () => {
                 id='isbn'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='ISBN...'
+                defaultValue={book.isbn}
                 />
                 <div id='isbn-eror' aria-live='polite' aria-atomic='true'>
                     <p className='mt-2 text-sm text-red-500'>
@@ -62,6 +66,7 @@ const CreateForm = () => {
                 id='judul_buku'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='Judul Buku...'
+                defaultValue={book.judul_buku}
                 />
                 <div id='judul-eror' aria-live='polite' aria-atomic='true'>
                     <p className='mt-2 text-sm text-red-500'>
@@ -82,6 +87,7 @@ const CreateForm = () => {
                 id='pengaran'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='Pengarang...'
+                defaultValue={book.pengaran}
                 />
                 <div id='pengaran-eror' aria-live='polite' aria-atomic='true'>
                     <p className='mt-2 text-sm text-red-500'>
@@ -102,6 +108,7 @@ const CreateForm = () => {
                 id='sekilas_isi'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='Sekilas Isi...'
+                defaultValue={book.sekilas_isi}
                 />
                 <div id='sekilas-eror' aria-live='polite' aria-atomic='true'>
                     <p className='mt-2 text-sm text-red-500'>
@@ -122,6 +129,7 @@ const CreateForm = () => {
                 id='tanggal_masuk'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='Tanggal Masuk...'
+                defaultValue={book.tanggal_masuk}
                 />
 
                 <div id='tanggal-eror' aria-live='polite' aria-atomic='true'>
@@ -143,6 +151,7 @@ const CreateForm = () => {
                 id='stok'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='Stok...'
+                defaultValue={book.stok}
                 />
                 <div id='stok-eror' aria-live='polite' aria-atomic='true'>
                     <p className='mt-2 text-sm text-red-500'>
@@ -175,10 +184,10 @@ const CreateForm = () => {
                         {state?.message}
                     </p>
                 </div>
-            <button type='submit' className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-sm text-sm w-full px-5 py-3 text-center'>Save</button>
+            <button type='submit' className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-sm text-sm w-full px-5 py-3 text-center'>Update</button>
         </form>
     </div>
   )
 }
 
-export default CreateForm
+export default UpdateForm

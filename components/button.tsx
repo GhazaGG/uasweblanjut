@@ -1,5 +1,7 @@
+import { deleteBook } from "@/lib/action"
 import Link from "next/link"
 import { IoAddSharp, IoPencil, IoTrashOutline } from "react-icons/io5"
+import { string } from "zod"
 
 export const CreateButton = () => {
     return (
@@ -10,18 +12,29 @@ export const CreateButton = () => {
     )
 }
 
-export const EditButton = () => {
+export const EditButton = ({id}: {id:string}) => {
     return (
-        <Link href="/books/create" className="rounded-sm border p-1 hover:bg-gray-100">
+        <Link href={`/books/edit/${id}`} className="rounded-sm border p-1 hover:bg-gray-100">
             <IoPencil size={20}/>
         </Link>
     )
 }
 
-export const DeleteButton = () => {
+export const ViewData = () => {
     return (
-        <button className="rounded-sm border p-1 hover:bg-gray-100">
-            <IoTrashOutline size={20}/>
-        </button>
+        <Link href={`/books`} className="inline-flex items-center space-x-1 text-white bg-blue-700 hover:bg-blue-800 px-5 py-[9px] rounded-sm text-sm">
+            <h1>Lihat Data</h1>
+        </Link>
+    )
+}
+
+export const DeleteButton = ({id}: {id:string}) => {
+    const DeleteBookWithId = deleteBook.bind(null, id)
+    return (
+        <form action={DeleteBookWithId}>
+            <button className="rounded-sm border p-1 hover:bg-gray-100">
+                <IoTrashOutline size={20}/>
+            </button>
+        </form>
     )
 }

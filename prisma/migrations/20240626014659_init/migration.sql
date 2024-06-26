@@ -6,8 +6,8 @@ CREATE TABLE "Book" (
     "judul_buku" TEXT NOT NULL,
     "pengaran" TEXT NOT NULL,
     "sekilas_isi" TEXT NOT NULL,
-    "tanggal_masuk" TIMESTAMP(3) NOT NULL,
-    "stok" INTEGER NOT NULL,
+    "tanggal_masuk" TEXT NOT NULL,
+    "stok" TEXT NOT NULL,
     "foto" TEXT,
 
     CONSTRAINT "Book_pkey" PRIMARY KEY ("id")
